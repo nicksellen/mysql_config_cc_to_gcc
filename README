@@ -1,11 +1,15 @@
 
-# gem install mysql
+=== the problem
 
-fails on Solaris if mysql was compiled with cc (as if you use the sun webstack version) and ruby was compiled with gcc. this is because it gets it's options from mysql_config which supplies loads of Sun Studio specific things.
+gem install mysql
+
+this fails on Solaris if mysql was compiled with cc (as if you use the sun webstack version) and ruby was compiled with gcc. this is because it gets it's options from mysql_config which supplies loads of Sun Studio specific things.
+
+=== the solution
 
 this script strips out the Sun Studio options:
 
-# cd /tmp
-# wget http://github.com/nicksellen/mysql_config_cc_to_gcc/raw/master/mysql_config_cc_to_cc
-# chmod +x /tmp/mysql_config_cc_to_cc
-# gem install mysql -- --with-mysql-config=/tmp/mysql_config_cc_to_cc
+cd /tmp
+wget http://github.com/nicksellen/mysql_config_cc_to_gcc/raw/master/mysql_config_cc_to_gcc
+chmod +x /tmp/mysql_config_cc_to_gcc
+gem install mysql -- --with-mysql-config=/tmp/mysql_config_cc_to_gcc
