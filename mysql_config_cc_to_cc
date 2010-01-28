@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mysql_config $@ | \
+        sed 's/\-xnorunpath//g' | \
+        sed 's/\-xc99=all/\-std=gnu99/g' | \
+        sed 's/\-xildoff//g' | \
+        sed 's/\-xspace//g' | \
+        sed 's/\-xchip=[^ ]*//g' | \
+        sed 's/\-xarch=[^ ]*//g'
